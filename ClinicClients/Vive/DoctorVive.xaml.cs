@@ -29,7 +29,7 @@ namespace ClinicClients.Vive
         public DoctorVive()
         {
             InitializeComponent();
-            DataContext = new DoctorViveModel(dataGrid);
+            DataContext = new DoctorViveModel(dataGrid, AddresList.getDoctors, AddresList.setDoctors);
         }
 
        

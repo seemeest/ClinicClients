@@ -13,7 +13,6 @@ namespace ClinicClients.Data
         public string Medication { get; set; }
         public string Dosage { get; set; }
 
-        public Appointment Appointment { get; set; }
 
     }
 }

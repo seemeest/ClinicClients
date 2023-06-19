@@ -11,7 +11,7 @@
     <Grid>
         <StackPanel>
             <Button Content="Сохранить" Width="120" Command="{Binding SendDataCommand}" />
-            <DataGrid AutoGenerateColumns="True" Name="dataGrid"   ItemsSource="{Binding DiagnosisList}"/>
+            <DataGrid AutoGenerateColumns="True" Name="dataGrid"   ItemsSource="{Binding DataList}"/>
         </StackPanel>
     </Grid>
 </Page>

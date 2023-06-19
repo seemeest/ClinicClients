@@ -88,6 +88,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Control\Auth.cs" />
+    <Compile Include="Data\AddresList.cs" />
     <Compile Include="Data\Appointment.cs" />
     <Compile Include="Data\Department.cs" />
     <Compile Include="Data\Diagnosis.cs" />
@@ -97,6 +98,7 @@
     <Compile Include="Data\Prescription.cs" />
     <Compile Include="Data\ThisPage.cs" />
     <Compile Include="Model\AuthData.cs" />
+    <Compile Include="ViewMode\BaseViveModel.cs" />
     <Compile Include="ViewMode\AppointmentsViveModel.cs" />
     <Compile Include="ViewMode\DepartmentViveModel.cs" />
     <Compile Include="ViewMode\DiagnosisViveModel.cs" />

@@ -1,4 +1,5 @@
-﻿using ClinicClients.ViewMode;
+﻿using ClinicClients.Data;
+using ClinicClients.ViewMode;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,7 +25,7 @@ namespace ClinicClients.Vive
         public PatientVive()
         {
             InitializeComponent();
-            DataContext = new PatientViveModel();
+            DataContext = new PatientViveModel(dataGrid, AddresList.getPatient, AddresList.setPatients);
         }
     }
 }
