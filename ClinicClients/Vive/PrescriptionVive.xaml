@@ -6,12 +6,14 @@
       xmlns:local="clr-namespace:ClinicClients.Vive"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="PrescriptionVive">
+      Title="PrescriptionVive" Cursor="">
 
     <Grid>
         <StackPanel>
             <Button Content="Сохранить" Width="120" Command="{Binding SendDataCommand}" />
-            <DataGrid AutoGenerateColumns="True" Name="dataGrid"   ItemsSource="{Binding DataList}"/>
+            <DataGrid AutoGenerateColumns="True" Name="dataGrid"   ItemsSource="{Binding DataList}">
+                
+            </DataGrid>
         </StackPanel>
     </Grid>
 </Page>

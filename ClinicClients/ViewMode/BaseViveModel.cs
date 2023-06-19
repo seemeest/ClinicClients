@@ -13,6 +13,8 @@ using ClinicClients.Data;
 using ClinicClients.Model;
 using GalaSoft.MvvmLight.Command;
 using Newtonsoft.Json;
+using System.Windows.Controls.Primitives;
+using System.Windows.Media;
 
 namespace ClinicClients.ViewMode
 {
@@ -29,9 +31,21 @@ namespace ClinicClients.ViewMode
 
         public ICommand GetDataCommand { get; }
         public ICommand SendDataCommand { get; }
+        public ICommand DeleteCommand { get; }
+
         protected DataGrid dataGrid;
         string _Getaddres;
         string _Setaddres;
+       
+
+        //СДЕЛАТЬ!!
+        private void DeleteRow(T item)
+        {
+            if (DataList.Contains(item))
+            {
+                DataList.Remove(item);
+            }
+        }
         protected BaseViveModel(DataGrid dataGrid, string Getaddres, string Setaddres)
         {
             this.dataGrid = dataGrid;
@@ -40,6 +54,7 @@ namespace ClinicClients.ViewMode
             _Getaddres = Getaddres;
             _Setaddres = Setaddres;
             GetDataList();
+            DeleteCommand = new RelayCommand<T>(DeleteRow);
         }
 
         private async void GetDataList()
