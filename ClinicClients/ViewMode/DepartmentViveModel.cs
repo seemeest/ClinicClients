@@ -9,29 +9,49 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Input;
+using GalaSoft.MvvmLight.Command;
+using System.Collections.ObjectModel;
 
 namespace ClinicClients.ViewMode
 {
     //Department
     internal class DepartmentViveModel : DependencyObject
     {
-        public DepartmentViveModel()
-        {
-            GetDepartmentList();
 
-        }
-        public List<Department> DepartmentList
+
+        public ObservableCollection<Department> DepartmentList
         {
-            get { return (List<Department>)GetValue(DepartmentListProperty); }
+            get { return (ObservableCollection<Department>)GetValue(DepartmentListProperty); }
             set { SetValue(DepartmentListProperty, value); }
         }
 
         // Using a DependencyProperty as the backing store for AppointmentsList.
         // This enables animation, styling, binding, etc...
         public static readonly DependencyProperty DepartmentListProperty =
-            DependencyProperty.Register("DepartmentList", typeof(List<Department>), typeof(DepartmentViveModel), new PropertyMetadata(null));
+            DependencyProperty.Register("DepartmentList", typeof(ObservableCollection<Department>), typeof(DepartmentViveModel), new PropertyMetadata(null));
 
-        private async Task GetDepartmentList()
+        public ICommand GetDataCommand { get; }
+        public ICommand SendDataCommand { get; }
+        DataGrid dataGrid;
+
+        public DepartmentViveModel(DataGrid dataGrid)
+        {
+            this.dataGrid = dataGrid;
+            GetDataCommand = new RelayCommand(GetDepartmentList);
+            SendDataCommand = new RelayCommand(SendDataToServer);
+            GetDepartmentList();
+        }
+        private void ConfigureDataGridColumns()
+        {
+            // Находим столбец DoctorId по его индексу
+            DataGridColumn doctorIdColumn = dataGrid.Columns[0];
+
+            // Устанавливаем IsReadOnly для столбца DoctorId в true
+            doctorIdColumn.IsReadOnly = true;
+        }
+        private async void  GetDepartmentList()
         {
             try
             {
@@ -62,11 +82,10 @@ namespace ClinicClients.ViewMode
                         // Получаем JSON-ответ от сервера
                         string responseJson = await response.Content.ReadAsStringAsync();
 
-                        // Преобразуем JSON-ответ в список объектов Appointment
                         List<Department> departments = JsonConvert.DeserializeObject<List<Department>>(responseJson);
 
-                        // Заполняем свойство AppointmentsList
-                        DepartmentList = departments;
+                        DepartmentList = new ObservableCollection<Department>(departments);
+                        ConfigureDataGridColumns();
                     }
                     else
                     {
@@ -77,6 +96,43 @@ namespace ClinicClients.ViewMode
             catch (Exception ex)
             {
                 MessageBox.Show($"Ошибка: {ex.Message}");
+            }
+        }
+        private async void SendDataToServer()
+        {
+            try
+            {
+                using (HttpClient client = new HttpClient())
+                {
+                    string username = AuthData.Login;
+                    string password = AuthData.password;
+
+                    string jsonData = JsonConvert.SerializeObject(DepartmentList);
+
+                    var content = new StringContent(jsonData, Encoding.UTF8, "application/json");
+
+                    string credentials = Convert.ToBase64String(Encoding.UTF8.GetBytes($"{username}:{password}"));
+                    client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", credentials);
+
+                    HttpResponseMessage response = await client.PostAsync($"{AuthData.ServerAddres}setDepartments", content);
+
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        string responseJson = await response.Content.ReadAsStringAsync();
+                        List<Department> updatedDepartment = JsonConvert.DeserializeObject<List<Department>>(responseJson);
+
+                        DepartmentList = new ObservableCollection<Department>(updatedDepartment);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Ошибка при отправке данных на сервер");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
             }
         }
     }

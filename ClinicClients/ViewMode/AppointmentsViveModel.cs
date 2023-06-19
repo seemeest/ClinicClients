@@ -74,10 +74,10 @@ namespace ClinicClients.ViewMode
                         string responseJson = await response.Content.ReadAsStringAsync();
 
                         // Преобразуем JSON-ответ в список объектов Appointment
-                        ObservableCollection<Appointment> appointments = JsonConvert.DeserializeObject<ObservableCollection<Appointment>>(responseJson);
+                        ObservableCollection<Appointment> updatedAppointments = JsonConvert.DeserializeObject<ObservableCollection<Appointment>>(responseJson);
 
                         // Заполняем свойство AppointmentsList
-                        AppointmentsList = appointments;
+                        AppointmentsList = new ObservableCollection<Appointment>(updatedAppointments);
                     }
                     else
                     {

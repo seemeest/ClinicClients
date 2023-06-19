@@ -9,28 +9,38 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Collections.ObjectModel;
+using System.Windows.Controls;
+using System.Windows.Input;
+using GalaSoft.MvvmLight.Command;
 
 namespace ClinicClients.ViewMode
 {
     internal class DiagnosisViveModel : DependencyObject
     {
-        public DiagnosisViveModel()
+  
+        public ObservableCollection<Diagnosis> DiagnosisList
         {
-            GetDiagnosisList();
-
-        }
-        public List<Diagnosis> DiagnosisList
-        {
-            get { return (List<Diagnosis>)GetValue(DiagnosisListProperty); }
+            get { return (ObservableCollection<Diagnosis>)GetValue(DiagnosisListProperty); }
             set { SetValue(DiagnosisListProperty, value); }
         }
 
         // Using a DependencyProperty as the backing store for AppointmentsList.
         // This enables animation, styling, binding, etc...
         public static readonly DependencyProperty DiagnosisListProperty =
-            DependencyProperty.Register("DiagnosisList", typeof(List<Diagnosis>), typeof(DiagnosisViveModel), new PropertyMetadata(null));
+            DependencyProperty.Register("DiagnosisList", typeof(ObservableCollection<Diagnosis>), typeof(DiagnosisViveModel), new PropertyMetadata(null));
 
-        private async Task GetDiagnosisList()
+        public ICommand GetDataCommand { get; }
+        public ICommand SendDataCommand { get; }
+        DataGrid dataGrid;
+        public DiagnosisViveModel(DataGrid dataGrid)
+        {
+            this.dataGrid = dataGrid;
+            GetDataCommand = new RelayCommand(GetDiagnosisList);
+            SendDataCommand = new RelayCommand(SendDataToServer);
+            GetDiagnosisList();
+        }
+        private async void GetDiagnosisList()
         {
             try
             {
@@ -65,7 +75,7 @@ namespace ClinicClients.ViewMode
                         List<Diagnosis> diagnosis = JsonConvert.DeserializeObject<List<Diagnosis >> (responseJson);
 
                         // Заполняем свойство AppointmentsList
-                        DiagnosisList = diagnosis;
+                        DiagnosisList = new ObservableCollection<Diagnosis>(diagnosis);
                     }
                     else
                     {
@@ -76,6 +86,44 @@ namespace ClinicClients.ViewMode
             catch (Exception ex)
             {
                 MessageBox.Show($"Ошибка: {ex.Message}");
+            }
+        }
+
+        private async void SendDataToServer()
+        {
+            try
+            {
+                using (HttpClient client = new HttpClient())
+                {
+                    string username = AuthData.Login;
+                    string password = AuthData.password;
+
+                    string jsonData = JsonConvert.SerializeObject(DiagnosisList);
+
+                    var content = new StringContent(jsonData, Encoding.UTF8, "application/json");
+
+                    string credentials = Convert.ToBase64String(Encoding.UTF8.GetBytes($"{username}:{password}"));
+                    client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", credentials);
+
+                    HttpResponseMessage response = await client.PostAsync($"{AuthData.ServerAddres}setDepartments", content);
+
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        string responseJson = await response.Content.ReadAsStringAsync();
+                        List<Diagnosis> updatedDiagnosis = JsonConvert.DeserializeObject<List<Diagnosis>>(responseJson);
+
+                        DiagnosisList = new ObservableCollection<Diagnosis>(updatedDiagnosis);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Ошибка при отправке данных на сервер");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
             }
         }
     }

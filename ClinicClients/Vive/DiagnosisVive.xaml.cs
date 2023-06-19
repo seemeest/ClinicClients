@@ -24,7 +24,7 @@ namespace ClinicClients.Vive
         public DiagnosisVive()
         {
             InitializeComponent();
-            DataContext = new DiagnosisViveModel();
+            DataContext = new DiagnosisViveModel(dataGrid);
         } 
     }
 }

@@ -9,6 +9,9 @@
       Title="DiagnosisVive">
 
     <Grid>
-        <DataGrid  AutoGenerateColumns="True"  Grid.ColumnSpan="3" Grid.Row="1" ItemsSource="{Binding  DiagnosisList }"/>
+        <StackPanel>
+            <Button Content="Сохранить" Width="120" Command="{Binding SendDataCommand}" />
+            <DataGrid AutoGenerateColumns="True" Name="dataGrid"   ItemsSource="{Binding DiagnosisList}"/>
+        </StackPanel>
     </Grid>
 </Page>
