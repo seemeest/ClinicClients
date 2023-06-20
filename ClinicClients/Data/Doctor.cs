@@ -13,6 +13,8 @@ namespace ClinicClients.Data
         public string LastName { get; set; }
         public string Specialization { get; set; }
         public string PhoneNumber { get; set; }
+        public string mobile_number { get; set; }
+        public string address { get; set; }
 
     }
 }

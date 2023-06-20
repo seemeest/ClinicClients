@@ -8,7 +8,7 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="LogIn">
 
-    <Grid Background="White">
+    <Grid Background="#E3E9F0">
 
         <Border Background="White" HorizontalAlignment="Center" VerticalAlignment="Center" CornerRadius="20" Width="220" >
             <Border.Effect>

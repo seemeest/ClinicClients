@@ -106,30 +106,33 @@
     <Compile Include="ViewMode\LogInViewMode.cs" />
     <Compile Include="ViewMode\PatientViveModel.cs" />
     <Compile Include="ViewMode\PrescriptionViveModel.cs" />
-    <Compile Include="Vive\AppointmentVive.xaml.cs">
+    <Compile Include="Vive\DatabaseVive\AppointmentVive.xaml.cs">
       <DependentUpon>AppointmentVive.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Vive\DepartmentVive.xaml.cs">
+    <Compile Include="Vive\DatabaseVive\DepartmentVive.xaml.cs">
       <DependentUpon>DepartmentVive.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Vive\DiagnosisVive.xaml.cs">
+    <Compile Include="Vive\DatabaseVive\DiagnosisVive.xaml.cs">
       <DependentUpon>DiagnosisVive.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Vive\DoctorVive.xaml.cs">
+    <Compile Include="Vive\DatabaseVive\DoctorVive.xaml.cs">
       <DependentUpon>DoctorVive.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Vive\Home.xaml.cs">
+    <Compile Include="Vive\UsersVive\Home.xaml.cs">
       <DependentUpon>Home.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Vive\LogIn.xaml.cs">
+    <Compile Include="Vive\UsersVive\LogIn.xaml.cs">
       <DependentUpon>LogIn.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewMode\MainWindowViewModel.cs" />
-    <Compile Include="Vive\PatientVive.xaml.cs">
+    <Compile Include="Vive\DatabaseVive\PatientVive.xaml.cs">
       <DependentUpon>PatientVive.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Vive\PrescriptionVive.xaml.cs">
+    <Compile Include="Vive\DatabaseVive\PrescriptionVive.xaml.cs">
       <DependentUpon>PrescriptionVive.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Vive\UsersVive\ProfileVive.xaml.cs">
+      <DependentUpon>ProfileVive.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -143,35 +146,39 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Vive\AppointmentVive.xaml">
+    <Page Include="Vive\DatabaseVive\AppointmentVive.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Vive\DepartmentVive.xaml">
+    <Page Include="Vive\DatabaseVive\DepartmentVive.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Vive\DiagnosisVive.xaml">
+    <Page Include="Vive\DatabaseVive\DiagnosisVive.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Vive\DoctorVive.xaml">
+    <Page Include="Vive\DatabaseVive\DoctorVive.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Vive\Home.xaml">
+    <Page Include="Vive\UsersVive\Home.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Vive\LogIn.xaml">
+    <Page Include="Vive\UsersVive\LogIn.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Vive\PatientVive.xaml">
+    <Page Include="Vive\DatabaseVive\PatientVive.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Vive\PrescriptionVive.xaml">
+    <Page Include="Vive\DatabaseVive\PrescriptionVive.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Vive\UsersVive\ProfileVive.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
