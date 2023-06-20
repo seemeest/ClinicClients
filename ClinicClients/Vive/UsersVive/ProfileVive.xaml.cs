@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ClinicClients.Data;
+using ClinicClients.ViewMode.UserModel.ProfileViveModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +25,10 @@ namespace ClinicClients.Vive.UsersVive
         public ProfileVive()
         {
             InitializeComponent();
+           
+            DataContext = new ProfileViveModel();
         }
+
+        
     }
 }

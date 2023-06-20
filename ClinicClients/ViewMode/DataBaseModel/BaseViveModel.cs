@@ -36,7 +36,7 @@ namespace ClinicClients.ViewMode
         protected DataGrid dataGrid;
         string _Getaddres;
         string _Setaddres;
-       
+
 
         //СДЕЛАТЬ!!
         private void DeleteRow(T item)
@@ -55,8 +55,20 @@ namespace ClinicClients.ViewMode
             _Setaddres = Setaddres;
             GetDataList();
             DeleteCommand = new RelayCommand<T>(DeleteRow);
+            Support();
+        }
+         protected BaseViveModel( string Getaddres, string Setaddres)
+        {
+            GetDataCommand = new RelayCommand(GetDataList);
+            SendDataCommand = new RelayCommand(SendDataToServer);
+            _Getaddres = Getaddres;
+            _Setaddres = Setaddres;
+            GetDataList();
+            DeleteCommand = new RelayCommand<T>(DeleteRow);
+            Support();
         }
 
+        protected virtual void Support() { }
         private async void GetDataList()
         {
             try
@@ -120,7 +132,7 @@ namespace ClinicClients.ViewMode
                     string credentials = Convert.ToBase64String(Encoding.UTF8.GetBytes($"{username}:{password}"));
                     client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", credentials);
 
-                    HttpResponseMessage response = await client.PostAsync($"{AuthData.ServerAddres+_Setaddres}", content);
+                    HttpResponseMessage response = await client.PostAsync($"{AuthData.ServerAddres + _Setaddres}", content);
 
 
                     if (response.IsSuccessStatusCode)

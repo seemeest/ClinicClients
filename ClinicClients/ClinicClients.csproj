@@ -98,14 +98,16 @@
     <Compile Include="Data\Prescription.cs" />
     <Compile Include="Data\ThisPage.cs" />
     <Compile Include="Model\AuthData.cs" />
-    <Compile Include="ViewMode\BaseViveModel.cs" />
-    <Compile Include="ViewMode\AppointmentsViveModel.cs" />
-    <Compile Include="ViewMode\DepartmentViveModel.cs" />
-    <Compile Include="ViewMode\DiagnosisViveModel.cs" />
-    <Compile Include="ViewMode\DoctorViveModel.cs" />
-    <Compile Include="ViewMode\LogInViewMode.cs" />
-    <Compile Include="ViewMode\PatientViveModel.cs" />
-    <Compile Include="ViewMode\PrescriptionViveModel.cs" />
+    <Compile Include="ViewMode\DataBaseModel\BaseViveModel.cs" />
+    <Compile Include="ViewMode\DataBaseModel\AppointmentsViveModel.cs" />
+    <Compile Include="ViewMode\DataBaseModel\DepartmentViveModel.cs" />
+    <Compile Include="ViewMode\DataBaseModel\DiagnosisViveModel.cs" />
+    <Compile Include="ViewMode\DataBaseModel\DoctorViveModel.cs" />
+    <Compile Include="ViewMode\UserModel\LogInViewMode.cs" />
+    <Compile Include="ViewMode\DataBaseModel\PatientViveModel.cs" />
+    <Compile Include="ViewMode\DataBaseModel\PrescriptionViveModel.cs" />
+    <Compile Include="ViewMode\UserModel\ProfileViveModels\ProfileViveModelDependency.cs" />
+    <Compile Include="ViewMode\UserModel\ProfileViveModels\ProfileViveModelGet.cs" />
     <Compile Include="Vive\DatabaseVive\AppointmentVive.xaml.cs">
       <DependentUpon>AppointmentVive.xaml</DependentUpon>
     </Compile>
@@ -124,7 +126,7 @@
     <Compile Include="Vive\UsersVive\LogIn.xaml.cs">
       <DependentUpon>LogIn.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ViewMode\MainWindowViewModel.cs" />
+    <Compile Include="ViewMode\UserModel\MainWindowViewModel.cs" />
     <Compile Include="Vive\DatabaseVive\PatientVive.xaml.cs">
       <DependentUpon>PatientVive.xaml</DependentUpon>
     </Compile>

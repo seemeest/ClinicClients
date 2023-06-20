@@ -31,5 +31,7 @@ namespace ClinicClients.Data
         public static string getPrescription = "getPrescription";
         public static string setPrescriptions = "setPrescriptions";
 
+        public static string getUserId= "GetUserId";
+
     }
 }

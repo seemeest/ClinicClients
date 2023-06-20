@@ -6,13 +6,62 @@
       xmlns:local="clr-namespace:ClinicClients.Vive.UsersVive"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="ProfileVive">
+      Title="ProfileVive"  Height="1600" Width="900" Background="#E3E9F0">
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
+            <ColumnDefinition Width="300"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
+
+        <StackPanel Grid.Column="1" Margin="15">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                <Border Background="White" Grid.Row="0"  Margin="5,0,30,0" CornerRadius="3" >
+                    <StackPanel>
+                        <UniformGrid Rows="2" Columns="2"  Margin="5 3 0 0">
+                            <TextBlock Text="ФИО" FontFamily="Arial Black" FontWeight="Light" FontSize="10" />
+                            <TextBox BorderThickness="0" Text="{Binding UserName}"  Foreground="#687881" FontFamily="Arial Narrow" FontWeight="Light" FontSize="10" />
+                        </UniformGrid>
+                        <Rectangle Height="1" Fill="#E5E5E5" />
+                        <UniformGrid Rows="2" Columns="2" Margin="5 3 0 0" >
+                            <TextBlock Text="Email" FontFamily="Arial Black" FontWeight="Light" FontSize="10" />
+                            <TextBox BorderThickness="0"  Text="{Binding UserEmail}"  Foreground="#687881" FontFamily="Arial Narrow" FontWeight="Light" FontSize="10" />
+                        </UniformGrid>
+                        <Rectangle Height="1" Fill="#E5E5E5" />
+                        
+                        <UniformGrid Rows="2" Columns="2" Margin="5 3 0 0"  >
+                           
+                            <TextBlock Text="Phone" FontFamily="Arial Black" FontWeight="Light" FontSize="10" />
+                            <TextBox BorderThickness="0" Text="{Binding UserPhone}"  Foreground="#687881" FontFamily="Arial Narrow" FontWeight="Light" FontSize="10" />
+                        </UniformGrid>
+                        <Rectangle Height="1" Fill="#E5E5E5" />
+                        <UniformGrid Rows="2" Columns="2" Margin="5 3 0 0" >
+                            <TextBlock Text="Mobile" FontFamily="Arial Black" FontWeight="Light" FontSize="10" />
+                            <TextBox  BorderThickness="0" Text="{Binding UserMobile}"  Foreground="#687881" FontFamily="Arial Narrow" FontWeight="Light" FontSize="10" />
+                        </UniformGrid>
+                        <Rectangle Height="1" Fill="#E5E5E5" />
+                        <UniformGrid Rows="2" Columns="2" Margin="5 3 0 0" >
+                            <TextBlock Text="Address" FontFamily="Arial Black" FontWeight="Light" FontSize="10" />
+                            <TextBox  BorderThickness="0" Text="{Binding UserAddress}"  Foreground="#687881" FontFamily="Arial Narrow" FontWeight="Light" FontSize="10" />
+                        </UniformGrid>
+
+                    </StackPanel>
+
+                </Border>
+
+                <Border Background="White" Grid.Row="1"  Margin="5,10,30,0" CornerRadius="3" >
+                    <StackPanel>
+
+                        <DataGrid AutoGenerateColumns="True">  </DataGrid>
+                    </StackPanel>
+
+                </Border>
+            </Grid>
+        </StackPanel>
         <StackPanel Grid.Column="0" Margin="15">
             <Grid>
                 <Grid.RowDefinitions>
@@ -20,16 +69,18 @@
                     <RowDefinition/>
                 </Grid.RowDefinitions>
 
-                <Border Grid.Row="0" Background="White" HorizontalAlignment="Stretch" Width="200" Height="150"  >
-                    <StackPanel Margin="5">
-                        <Ellipse Width="70" Height="70" StrokeThickness="0.2" Stroke="Black"> </Ellipse>
-                        
+                <Border Grid.Row="0" Background="White" Height="190" Margin="30,0,5,0"   CornerRadius="3" >
+                    <StackPanel Margin="10">
+                        <Ellipse Width="70" Height="70" StrokeThickness="0.2" Stroke="Black"></Ellipse>
+
                         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 5 0 0">
-                            <TextBlock Text="DoctorName" FontFamily="Arial Black" ></TextBlock>
-                            <TextBlock Text="Специальность" HorizontalAlignment="Center" Foreground="#687881" FontFamily="Arial Narrow"> </TextBlock>
-                            <TextBlock Text="Адрес" HorizontalAlignment="Center" Foreground="#687881" FontFamily="Arial Narrow"> </TextBlock>
+                            <TextBlock Text="{Binding UserName}" FontFamily="Arial Black" ></TextBlock>
+
+                            <TextBlock Text="{Binding Specialization}" HorizontalAlignment="Center" Foreground="#687881" FontFamily="Arial Narrow" Margin="0 3 0 3"></TextBlock>
+
+                            <TextBlock Text="{Binding UserAddress}" HorizontalAlignment="Center" Foreground="#687881" FontFamily="Arial Narrow"></TextBlock>
                         </StackPanel>
-                        
+
                     </StackPanel>
                 </Border>
 
@@ -38,6 +89,6 @@
                 </Border>
             </Grid>
         </StackPanel>
-        
+
     </Grid>
 </Page>

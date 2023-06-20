@@ -17,7 +17,7 @@ using System.Collections.ObjectModel;
 namespace ClinicClients.ViewMode
 {
     //Department
-    internal class DepartmentViveModel : BaseViveModel<Department>
+    internal class DepartmentViveModel  : BaseViveModel<Department>
     {
 
         public DepartmentViveModel(DataGrid dataGrid, string Getaddres, string Setaddres) : base(dataGrid, Getaddres, Setaddres) { }
