@@ -33,5 +33,12 @@ namespace ClinicClients.Data
 
         public static string getUserId= "GetUserId";
 
+        public static string GetDoctorsSchedule = "getDoctorsSchedule";
+
+
+        public static string SetUserImage = "setUserImage";
+        public static string GetUserImage = "getUserImage";
+
+
     }
 }

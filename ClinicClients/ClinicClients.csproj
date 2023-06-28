@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{2B774CC1-1A06-470B-ADB1-734871E57BD1}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
+    <OutputType>Exe</OutputType>
     <RootNamespace>ClinicClients</RootNamespace>
     <AssemblyName>ClinicClients</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
@@ -66,6 +66,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\MvvmLightLibs.5.4.1.1\lib\net45\System.Windows.Interactivity.dll</HintPath>
     </Reference>
@@ -81,6 +82,9 @@
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="xNet">
+      <HintPath>D:\с#Lib\xNet.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -88,15 +92,16 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Control\Auth.cs" />
-    <Compile Include="Data\AddresList.cs" />
-    <Compile Include="Data\Appointment.cs" />
-    <Compile Include="Data\Department.cs" />
-    <Compile Include="Data\Diagnosis.cs" />
-    <Compile Include="Data\Doctor.cs" />
-    <Compile Include="Data\Error.cs" />
-    <Compile Include="Data\Patient.cs" />
-    <Compile Include="Data\Prescription.cs" />
-    <Compile Include="Data\ThisPage.cs" />
+    <Compile Include="Data\Support\AddresList.cs" />
+    <Compile Include="Data\BaseData\Appointment.cs" />
+    <Compile Include="Data\BaseData\Department.cs" />
+    <Compile Include="Data\BaseData\Diagnosis.cs" />
+    <Compile Include="Data\BaseData\Doctor.cs" />
+    <Compile Include="Data\Support\Error.cs" />
+    <Compile Include="Data\BaseData\Patient.cs" />
+    <Compile Include="Data\BaseData\Prescription.cs" />
+    <Compile Include="Data\Support\ThisPage.cs" />
+    <Compile Include="Data\UserData\DoctorsSchedule.cs" />
     <Compile Include="Model\AuthData.cs" />
     <Compile Include="ViewMode\DataBaseModel\BaseViveModel.cs" />
     <Compile Include="ViewMode\DataBaseModel\AppointmentsViveModel.cs" />

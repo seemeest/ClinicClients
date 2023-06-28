@@ -1,14 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Input;
+using System.Windows.Media;
 
 namespace ClinicClients.ViewMode.UserModel.ProfileViveModels
 {
     public partial class ProfileViveModel 
     {
+        public ICommand SendImageCommand { get; }
+
         public string UserName
         {
             get { return (string)GetValue(UserNameProperty); }
@@ -18,6 +23,14 @@ namespace ClinicClients.ViewMode.UserModel.ProfileViveModels
         public static readonly DependencyProperty UserNameProperty =
             DependencyProperty.Register("UserName", typeof(string), typeof(ProfileViveModel), new PropertyMetadata(""));
 
+        public ImageBrush ProfilAvatar
+        {
+            get { return (ImageBrush)GetValue(ProfilAvatarProperty); }
+            set { SetValue(ProfilAvatarProperty, value); }
+        }
+
+        public static readonly DependencyProperty ProfilAvatarProperty =
+            DependencyProperty.Register("ProfilAvatar", typeof(ImageBrush), typeof(ProfileViveModel), new PropertyMetadata(new ImageBrush(), OnProfilAvatarChanged));
         public string UserEmail
         {
             get { return (string)GetValue(UserEmailProperty); }

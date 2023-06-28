@@ -8,6 +8,8 @@ using System.Windows.Controls;
 namespace ClinicClients.Data
 {
     public static class ThisPage
+
+
     {
         public static event Action<Page> PageChanged;
 
