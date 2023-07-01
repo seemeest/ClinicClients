@@ -6,13 +6,12 @@ using System.Threading.Tasks;
 
 namespace ClinicClients.Data.UserData
 {
-    internal class DoctorsSchedule
+    public class DoctorsSchedule
     {
+        public int apportimentNumber;
+        public string PatientName { get; set; }
+        public string DeportamentName { get; set; }
+        public DateTime appointment_date { get; set; }
 
-
-        int apportimentNumber;
-        string PatientName { get; set; }
-        string DeportamentName { get; set; }
-        string apportimentName { get; set; }
     }
 }

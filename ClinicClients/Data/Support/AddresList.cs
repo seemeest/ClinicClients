@@ -40,5 +40,10 @@ namespace ClinicClients.Data
         public static string GetUserImage = "getUserImage";
 
 
+
+        public static string GetPatientEditName = "getPatientEditName";
+        public static string GetPatientDiagnos = "getPatientDiagnos";
+
+
     }
 }

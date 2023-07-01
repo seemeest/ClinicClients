@@ -15,6 +15,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media.Imaging;
 using System.Windows.Media;
+using ClinicClients.Data.UserData;
 
 namespace ClinicClients.ViewMode.UserModel.ProfileViveModels
 {
@@ -26,7 +27,7 @@ namespace ClinicClients.ViewMode.UserModel.ProfileViveModels
         public ProfileViveModel()
         {
             GetDataList();
-
+            GetDoctorShedule();
             SendImageCommand = new RelayCommand(SendImage);
             GetImageFromServerAsync();
         }
@@ -171,52 +172,99 @@ namespace ClinicClients.ViewMode.UserModel.ProfileViveModels
 
 
         public async void GetImageFromServerAsync()
+
         {
-            string url = $"{AuthData.ServerAddres + AddresList.GetUserImage}";
 
-            string username = AuthData.Login;
-            string password = AuthData.password;
-            string credentials = Convert.ToBase64String(Encoding.UTF8.GetBytes($"{username}:{password}"));
+           
 
-            using (HttpClient client = new HttpClient())
-            {
-                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", credentials);
+            //string url = $"{AuthData.ServerAddres + AddresList.GetUserImage}";
 
-                HttpResponseMessage response = await client.GetAsync(url);
+            //string username = AuthData.Login;
+            //string password = AuthData.password;
+            //string credentials = Convert.ToBase64String(Encoding.UTF8.GetBytes($"{username}:{password}"));
 
-                // Запись данных в файл лога
-                string logFilePath = "request.log"; // Путь к файлу лога
-                string imageFilePath = "image"; // Путь для сохранения изображения
+            //using (HttpClient client = new HttpClient())
+            //{
+            //    client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", credentials);
 
-                // Создаем или открываем файл лога для записи
-                using (StreamWriter logWriter = new StreamWriter(logFilePath, true))
-                {
-                    // Записываем данные в файл лога
-                    logWriter.WriteLine($"URL: {url}");
-                    logWriter.WriteLine($"Username: {username}");
-                    logWriter.WriteLine($"Password: {password}");
+            //    HttpResponseMessage response = await client.GetAsync(url);
 
-                    // Записываем содержимое ответа сервера
-                    logWriter.WriteLine("Response:");
-                    logWriter.WriteLine(response);
-                    logWriter.WriteLine(await response.Content.ReadAsStringAsync());
-                }
+            //    Запись данных в файл лога
+            //    string logFilePath = "request.log"; // Путь к файлу лога
+            //    string imageFilePath = "image"; // Путь для сохранения изображения
 
-                if (response.IsSuccessStatusCode)
-                {
-                    using (Stream imageStream = await response.Content.ReadAsStreamAsync())
-                    {
-                        using (FileStream fileStream = new FileStream(imageFilePath, FileMode.Create))
-                        {
-                            await imageStream.CopyToAsync(fileStream);
-                        }
-                    }
-                }
-            }
+            //    Создаем или открываем файл лога для записи
+            //    using (StreamWriter logWriter = new StreamWriter(logFilePath, true))
+            //    {
+            //        Записываем данные в файл лога
+            //        logWriter.WriteLine($"URL: {url}");
+            //        logWriter.WriteLine($"Username: {username}");
+            //        logWriter.WriteLine($"Password: {password}");
+
+            //        Записываем содержимое ответа сервера
+            //        logWriter.WriteLine("Response:");
+            //        logWriter.WriteLine(response);
+            //        logWriter.WriteLine(await response.Content.ReadAsStringAsync());
+            //    }
+
+            //    if (response.IsSuccessStatusCode)
+            //    {
+            //        using (Stream imageStream = await response.Content.ReadAsStreamAsync())
+            //        {
+            //            using (FileStream fileStream = new FileStream(imageFilePath, FileMode.Create))
+            //            {
+            //                await imageStream.CopyToAsync(fileStream);
+            //            }
+            //        }
+            //    }
+            //}
         }
 
+        private async void GetDoctorShedule()
+        {
+            try
+            {
+                using (HttpClient client = new HttpClient())
+                {
+                    string username = AuthData.Login;
+                    string password = AuthData.password;
 
+                    // Создаем объект для отправки данных
+                    var data = new { username, password };
 
+                    // Преобразуем данные в JSON-строку
+                    string jsonData = JsonConvert.SerializeObject(data);
+
+                    // Создаем контент запроса с JSON-строкой
+                    var content = new System.Net.Http.StringContent(jsonData, Encoding.UTF8, "application/json");
+
+                    // Добавляем заголовок авторизации
+                    string credentials = Convert.ToBase64String(Encoding.UTF8.GetBytes($"{username}:{password}"));
+                    client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", credentials);
+
+                    // Отправляем POST-запрос на сервер
+                    HttpResponseMessage response = await client.PostAsync($"{AuthData.ServerAddres + AddresList.GetDoctorsSchedule}", content);
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        // Получаем JSON-ответ от сервера
+                        string responseJson = await response.Content.ReadAsStringAsync();
+
+                        // Преобразуем JSON-ответ в список объектов DataList
+                        List<DoctorsSchedule> Tdata = JsonConvert.DeserializeObject<List<DoctorsSchedule>>(responseJson);
+
+                        DataListDoctorsSchedule = new ObservableCollection<DoctorsSchedule>(Tdata);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Ошибка при получении данных с сервера");
+                    }
+                }
+            }catch (Exception ex)
+            {
+                await Console.Out.WriteLineAsync(ex.ToString());
+            }
+        }
 
         private async void GetDataList()
         {

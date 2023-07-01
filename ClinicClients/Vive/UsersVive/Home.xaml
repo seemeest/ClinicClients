@@ -10,12 +10,12 @@
       Title="Home">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="40"/>
+            <RowDefinition Height="60"/>
             <RowDefinition  />
         </Grid.RowDefinitions>
 
         <Border Background="#FF3B3BD4" Grid.Row="0">
-            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Name="Panel">
+            <WrapPanel Orientation="Horizontal" VerticalAlignment="Center" Name="Panel">
 
                 <Border CornerRadius="10"    >
                     <StackPanel VerticalAlignment="Center" Orientation="Horizontal"  MouseLeftButtonDown="Patient_MouseLeftButtonDown" >
@@ -59,10 +59,25 @@
                         <materialDesign:PackIcon Kind="EmojiManProfile"  Foreground="White"    Width="17" Height="17" VerticalAlignment="Center"/>
                         <TextBlock Text="Профиль" Foreground="White" FontSize="15" FontWeight="Regular" LineHeight="18" FontStyle="Normal" ></TextBlock>
                     </StackPanel>
+                </Border><Border CornerRadius="10"     >
+                    <StackPanel VerticalAlignment="Center" Orientation="Horizontal" MouseLeftButtonDown="PatientEdit_MouseLeftButtonDown">
+                        <materialDesign:PackIcon Kind="EmojiManProfile"  Foreground="White"    Width="17" Height="17" VerticalAlignment="Center"/>
+                        <TextBlock Text="Управление Пациэнтами" Foreground="White" FontSize="15" FontWeight="Regular" LineHeight="18" FontStyle="Normal" ></TextBlock>
+                    </StackPanel>
+                </Border><Border CornerRadius="10"     >
+                    <StackPanel VerticalAlignment="Center" Orientation="Horizontal" MouseLeftButtonDown="Profile_MouseLeftButtonDown">
+                        <materialDesign:PackIcon Kind="EmojiManProfile"  Foreground="White"    Width="17" Height="17" VerticalAlignment="Center"/>
+                        <TextBlock Text="Профиль" Foreground="White" FontSize="15" FontWeight="Regular" LineHeight="18" FontStyle="Normal" ></TextBlock>
+                    </StackPanel>
+                </Border><Border CornerRadius="10"     >
+                    <StackPanel VerticalAlignment="Center" Orientation="Horizontal" MouseLeftButtonDown="Profile_MouseLeftButtonDown">
+                        <materialDesign:PackIcon Kind="EmojiManProfile"  Foreground="White"    Width="17" Height="17" VerticalAlignment="Center"/>
+                        <TextBlock Text="Профиль" Foreground="White" FontSize="15" FontWeight="Regular" LineHeight="18" FontStyle="Normal" ></TextBlock>
+                    </StackPanel>
                 </Border>
 
 
-            </StackPanel>
+            </WrapPanel>
         </Border>
 
         <Grid Grid.Row="1">

@@ -14,6 +14,7 @@ using System.Windows.Media.Animation;
 using System.IO;
 using ClinicClients.Model;
 using System.Text;
+using System.Windows.Media.Imaging;
 
 namespace ClinicClients.Vive.UsersVive
 {
@@ -27,6 +28,18 @@ namespace ClinicClients.Vive.UsersVive
             InitializeComponent();
            
             DataContext = new ProfileViveModel();
+
+            string saveDirectory = $"C:\\UserImages\\{AuthData.Login}/Avatar.jpg";
+            try
+            {
+                BitmapImage bitmapImage = new BitmapImage(new Uri(saveDirectory, UriKind.RelativeOrAbsolute));
+                Avatar.ImageSource = bitmapImage;
+            }
+            catch (Exception ex)
+            {
+                // Обработка ошибок загрузки изображения
+                MessageBox.Show($"Ошибка загрузки изображения: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
    

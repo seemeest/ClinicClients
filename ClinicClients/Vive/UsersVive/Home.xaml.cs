@@ -1,4 +1,5 @@
 ﻿using ClinicClients.Data;
+using ClinicClients.Vive.DatabaseVive;
 using ClinicClients.Vive.UsersVive;
 using System;
 using System.Collections.Generic;
@@ -81,6 +82,9 @@ namespace ClinicClients.Vive
         } private void Profile_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             MainFrame.Content = new ProfileVive();
+        }private void PatientEdit_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            MainFrame.Content = new PatientEditVive();
         }
     }
 }

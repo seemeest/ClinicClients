@@ -92,6 +92,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Control\Auth.cs" />
+    <Compile Include="Data\BaseData\PatientEdit.cs" />
     <Compile Include="Data\Support\AddresList.cs" />
     <Compile Include="Data\BaseData\Appointment.cs" />
     <Compile Include="Data\BaseData\Department.cs" />
@@ -108,6 +109,7 @@
     <Compile Include="ViewMode\DataBaseModel\DepartmentViveModel.cs" />
     <Compile Include="ViewMode\DataBaseModel\DiagnosisViveModel.cs" />
     <Compile Include="ViewMode\DataBaseModel\DoctorViveModel.cs" />
+    <Compile Include="ViewMode\DataBaseModel\PatientEditViveModel.cs" />
     <Compile Include="ViewMode\UserModel\LogInViewMode.cs" />
     <Compile Include="ViewMode\DataBaseModel\PatientViveModel.cs" />
     <Compile Include="ViewMode\DataBaseModel\PrescriptionViveModel.cs" />
@@ -125,6 +127,9 @@
     <Compile Include="Vive\DatabaseVive\DoctorVive.xaml.cs">
       <DependentUpon>DoctorVive.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Vive\DatabaseVive\PatientVive.xaml.cs">
+      <DependentUpon>PatientVive.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Vive\UsersVive\Home.xaml.cs">
       <DependentUpon>Home.xaml</DependentUpon>
     </Compile>
@@ -132,11 +137,11 @@
       <DependentUpon>LogIn.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewMode\UserModel\MainWindowViewModel.cs" />
-    <Compile Include="Vive\DatabaseVive\PatientVive.xaml.cs">
-      <DependentUpon>PatientVive.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Vive\DatabaseVive\PrescriptionVive.xaml.cs">
       <DependentUpon>PrescriptionVive.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Vive\UsersVive\PatientEditVive.xaml.cs">
+      <DependentUpon>PatientEditVive.xaml</DependentUpon>
     </Compile>
     <Compile Include="Vive\UsersVive\ProfileVive.xaml.cs">
       <DependentUpon>ProfileVive.xaml</DependentUpon>
@@ -169,6 +174,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Vive\DatabaseVive\PatientVive.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Vive\UsersVive\Home.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -177,11 +186,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Vive\DatabaseVive\PatientVive.xaml">
+    <Page Include="Vive\DatabaseVive\PrescriptionVive.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Vive\DatabaseVive\PrescriptionVive.xaml">
+    <Page Include="Vive\UsersVive\PatientEditVive.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

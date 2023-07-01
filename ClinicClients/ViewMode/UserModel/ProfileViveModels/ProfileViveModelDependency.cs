@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ClinicClients.Data.UserData;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -13,7 +14,14 @@ namespace ClinicClients.ViewMode.UserModel.ProfileViveModels
     public partial class ProfileViveModel 
     {
         public ICommand SendImageCommand { get; }
+        public ObservableCollection<DoctorsSchedule> DataListDoctorsSchedule
+        {
+            get { return (ObservableCollection<DoctorsSchedule>)GetValue(DataListDoctorsScheduleProperty); }
+            set { SetValue(DataListDoctorsScheduleProperty, value); }
+        }
 
+        public static readonly DependencyProperty DataListDoctorsScheduleProperty =
+            DependencyProperty.Register("DataListDoctorsSchedule", typeof(ObservableCollection<DoctorsSchedule>), typeof(BaseViveModel<DoctorsSchedule>), new PropertyMetadata(null));
         public string UserName
         {
             get { return (string)GetValue(UserNameProperty); }

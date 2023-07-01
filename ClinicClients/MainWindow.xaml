@@ -7,7 +7,7 @@
         xmlns:local="clr-namespace:ClinicClients"
         mc:Ignorable="d"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        Title="ClinicClients" Height="450" Width="800" Background="#E3E9F0">
+        Title="ClinicClients" MinHeight="450" MinWidth="920" Background="#E3E9F0">
     <Grid>
 
         <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden" Cursor="Hand" Content="{Binding FramePage}" ></Frame>
